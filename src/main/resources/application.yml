@@ -1,0 +1,32 @@
+mybatis-plus:
+    config-location: classpath:mybatis-config.xml
+    mapper-locations: classpath*:/mapper/**/*.xml
+server:
+    port: 9001
+
+file:
+    image-dir: images/
+    video-dir: videos/
+
+spring:
+    data:
+        redis:
+            client-type: lettuce
+            database: 0
+            host: 127.0.0.1
+            port: 6379
+            lettuce:
+                pool:
+                    enabled: true
+                    max-active: 8
+                    max-idle: 8
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: 123456
+        url: jdbc:mysql://localhost:3306/dev_video?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true
+        username: root
+
+    servlet:
+        multipart:
+            max-file-size: 6000MB
+            max-request-size: 6000MB

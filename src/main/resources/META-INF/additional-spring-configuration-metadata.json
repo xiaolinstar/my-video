@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "file.image-dir",
+      "type": "java.lang.String",
+      "description": "图像上传文件夹."
+    },
+    {
+      "name": "file.video-dir",
+      "type": "java.lang.String",
+      "description": "视频上传文件夹."
+    }
+  ]
+}

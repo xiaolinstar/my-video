@@ -162,7 +162,7 @@ public class FileUploadComponent implements SliceUploadStrategy, MiniFileUploadS
      * 小文件上传
      *
      * @param file     文件上传请求
-     * @param fileDir 上传的目标文件夹，以 '/'结尾
+     * @param fileDir 上传的目标文件夹
      * @param fileName 上传的文件名，不包括拓展名
      * @return 文件上传回复消息
      */
@@ -170,9 +170,14 @@ public class FileUploadComponent implements SliceUploadStrategy, MiniFileUploadS
     public FileUploadDto uploadFile(MultipartFile file, String fileDir, String fileName) throws IOException {
         // 获取原始文件名的后缀名
         String originalFilename = Optional.ofNullable(file.getOriginalFilename()).orElseThrow();
-        String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
 
-        String targetFileName = fileName + suffix;
+        String targetFilename;
+        if (Objects.isNull(fileName)) {
+            targetFilename = originalFilename;
+        } else {
+            String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
+            targetFilename = fileName + suffix;
+        }
 
         // 创建目录文件
         File dir = new File(fileDir);
@@ -183,13 +188,32 @@ public class FileUploadComponent implements SliceUploadStrategy, MiniFileUploadS
             }
         }
         // FIXME 在进行文件转移的时候，需要考虑新建文件的路径，相对路径和绝对路径可能会出现问题
-        File newFile = new File(fileDir + targetFileName);
+        String targetFilePath;
+        if (fileDir.endsWith("/")) {
+            targetFilePath = fileDir + targetFilename;
+        } else {
+            targetFilePath = fileDir + '/' + targetFilename;
+        }
+        File newFile = new File(targetFilePath);
         file.transferTo(newFile.getAbsoluteFile());
         return FileUploadDto.builder()
                 .uploadComplete(true)
-                .fileName(targetFileName)
+                .fileName(targetFilePath)
                 .build();
     }
+
+    /**
+     * 小文件上传
+     *
+     * @param file    上传文件
+     * @param fileDir 文件目录
+     * @return 文件上传回复消息
+     */
+    @Override
+    public FileUploadDto uploadFile(MultipartFile file, String fileDir) throws IOException {
+        return uploadFile(file, fileDir, null);
+    }
+
 
     /**
      * 下载文件 文件存放在HttpServletResponse中

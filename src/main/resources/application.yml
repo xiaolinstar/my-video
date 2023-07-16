@@ -8,6 +8,9 @@ file:
     image-dir: images/
     video-dir: videos/
 
+debug: on
+
+
 spring:
     data:
         redis:
@@ -30,3 +33,12 @@ spring:
         multipart:
             max-file-size: 6000MB
             max-request-size: 6000MB
+
+ffmpeg:
+    path:
+        ffmpeg: /usr/local/bin/ffmpeg
+        ffprobe: /usr/local/bin/ffprobe
+alibaba:
+    cloud:
+        oss:
+            endpoint: "vod-videos-xiaolin"

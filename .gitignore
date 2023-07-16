@@ -1,4 +1,4 @@
-HELP.md
+README.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -38,3 +38,5 @@ images
 .mvn
 mvnw.cmd
 mvnw
+
+src/main/java/generator

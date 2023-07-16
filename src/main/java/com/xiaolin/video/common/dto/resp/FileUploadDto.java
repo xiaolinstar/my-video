@@ -18,6 +18,9 @@ import java.util.Map;
 @Builder
 public class FileUploadDto {
     private Boolean uploadComplete;
+    /**
+     * 相对于项目根目录的全路径
+     */
     private String fileName;
     private Integer chunk;
     private Integer chunks;

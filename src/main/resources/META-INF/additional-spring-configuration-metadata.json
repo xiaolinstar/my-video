@@ -9,6 +9,16 @@
       "name": "file.video-dir",
       "type": "java.lang.String",
       "description": "视频上传文件夹."
+    },
+    {
+      "name": "ffmpeg.path.ffmpeg",
+      "type": "java.lang.String",
+      "description": "ffmpeg程序地址."
+    },
+    {
+      "name": "ffmpeg.path.ffprobe",
+      "type": "java.lang.String",
+      "description": "ffprobe程序地址."
     }
   ]
 }

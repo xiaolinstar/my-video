@@ -1,4 +1,4 @@
-package com.xiaolin.video.common.enumerate;
+package com.xiaolin.video.common.enums;
 
 /**
  * @author xingxiaolin xlxing@bupt.edu.cn

@@ -16,11 +16,20 @@ public interface MiniFileUploadStrategy {
 
     /**
      * 小文件上传
-     * @param file 文件上传请求
+     * @param file 上传文件
+     * @param fileDir 文件目录
+     * @param fileName 文件名
      * @return 文件上传回复消息
      */
     FileUploadDto uploadFile(MultipartFile file, String fileDir, String fileName) throws IOException;
 
+    /**
+     * 小文件上传
+     * @param file 上传文件
+     * @param fileDir 文件目录
+     * @return 文件上传回复消息
+     */
+    FileUploadDto uploadFile(MultipartFile file, String fileDir) throws IOException;
     /**
      * 下载文件 文件存放在HttpServletResponse中
      * @param response HttpServletResponse

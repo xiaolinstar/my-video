@@ -74,5 +74,33 @@ public class VideoUnionServiceImpl implements VideoUnionService {
         }));
     }
 
+    @Override
+    public boolean updateOne(Long id, VideoUploadRequestDto videoUploadRequestDto) {
+        Video video = Video.builder()
+                .id(id)
+                .icon(videoUploadRequestDto.getIcon())
+                .tag(videoUploadRequestDto.getTag())
+                .type(videoUploadRequestDto.getType())
+                .year(videoUploadRequestDto.getYear())
+                .district(videoUploadRequestDto.getDistrict())
+                .build();
+        VideoDetail videoDetail = VideoDetail.builder()
+                .id(id)
+                .director(videoUploadRequestDto.getDirector())
+                .language(videoUploadRequestDto.getLanguage())
+                .duration(videoUploadRequestDto.getDuration())
+                .alias(videoUploadRequestDto.getAlias())
+                .description(videoUploadRequestDto.getDescription())
+                .leadingActor(videoUploadRequestDto.getLeadingActor())
+                .scriptWriter(videoUploadRequestDto.getScriptWriter())
+                .releaseDate(videoUploadRequestDto.getReleaseDate())
+                .resource(videoUploadRequestDto.getResource())
+                .build();
+        return Boolean.TRUE.equals(transactionTemplate.execute(status -> {
+            boolean updated1 = videoService.updateById(video);
+            boolean updated2 = videoDetailService.updateById(videoDetail);
+            return updated1 && updated2;
+        }));
+    }
 
 }

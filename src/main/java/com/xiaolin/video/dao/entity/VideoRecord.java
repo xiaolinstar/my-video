@@ -68,21 +68,25 @@ public class VideoRecord implements Serializable {
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     /**
      * 创建用户id
      */
+    @TableField(fill = FieldFill.INSERT)
     private Long createdByUserId;
 
     /**
      * 更新用户id
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updatedByUserId;
 
     @Serial

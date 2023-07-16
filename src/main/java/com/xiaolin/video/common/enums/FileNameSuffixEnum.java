@@ -1,4 +1,4 @@
-package com.xiaolin.video.common.enumerate;
+package com.xiaolin.video.common.enums;
 
 import lombok.Getter;
 

@@ -57,8 +57,14 @@ public class CommonController {
         fileUploadComponent.downloadFile(response, imageDir, name);
     }
 
+    /**
+     * 分片上传视频
+     * @param requestDto 上传视频信息
+     * @return 上传消息
+     * @throws IOException 文件处理IO异常
+     */
     @PostMapping("/video/upload")
-    public RestResp<?> uploadVideo(@ModelAttribute SliceFileUploadRequestDto requestDto) throws IOException {
+    public RestResp<FileUploadDto> uploadVideo(@ModelAttribute SliceFileUploadRequestDto requestDto) throws IOException {
         log.info("upload video:" + requestDto.getFile().getOriginalFilename());
         FileUploadDto fileUploadDto = fileUploadComponent.sliceUpload(requestDto, videoDir);
         return RestResp.success(fileUploadDto);

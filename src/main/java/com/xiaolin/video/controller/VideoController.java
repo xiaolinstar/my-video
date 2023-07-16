@@ -1,5 +1,6 @@
 package com.xiaolin.video.controller;
 
+import com.xiaolin.video.common.component.M3U8Component;
 import com.xiaolin.video.common.dto.RestResp;
 import com.xiaolin.video.common.dto.req.VideoUploadRequestDto;
 import com.xiaolin.video.dao.entity.Video;
@@ -22,6 +23,7 @@ import java.util.Optional;
 public class VideoController {
     private final VideoService videoService;
     private final VideoUnionService videoUnionService;
+    private final M3U8Component m3U8Component;
 
     /**
      * 根据视频主键查询视频基本信息
@@ -60,12 +62,13 @@ public class VideoController {
     /**
      * 删除视频
      * @param id 视频主键
-     * @param video 视频信息
+     * @param videoDto 视频信息
      * @return 删除消息
      */
     @PutMapping("/{id}")
-    public RestResp<String> updateOne(@PathVariable Long id, @RequestBody Video video) {
-        return RestResp.success();
+    public RestResp<String> updateOne(@PathVariable Long id, @RequestBody VideoUploadRequestDto videoDto) {
+        boolean updated = videoUnionService.updateOne(id, videoDto);
+        return updated? RestResp.success(): RestResp.error("更新失败", 504);
     }
 
 }

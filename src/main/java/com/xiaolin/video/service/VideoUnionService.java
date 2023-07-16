@@ -22,4 +22,6 @@ public interface VideoUnionService {
      * @return 删除结果
      */
     boolean deleteOne(Long id);
+
+    boolean updateOne(Long id, VideoUploadRequestDto videoUploadRequestDto);
 }
